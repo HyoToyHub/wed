@@ -30,12 +30,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
+  // 날짜 계산을 위한 기념일 설정
   static final DateTime anniversary = DateTime(2023, 4, 25);
   int dDayText = -1;
 
+  // 이미지 경로 설정
+  bool _isFirstImageShown = true;
   String _currentBackground = 'assets/images/background-01.jpeg';
   String _nextBackground = 'assets/images/background-02.jpeg';
-  bool _isFirstImageShown = true;
 
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
@@ -77,14 +79,6 @@ class _MyHomePageState extends State<MyHomePage>
   Future<void> _loadLastSelectedImage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _isFirstImageShown = prefs.getBool('isFirstImageShown') ?? true;
-    
-    if(_isFirstImageShown) {
-      _currentBackground = prefs.getString('currentBackground') ?? _currentBackground;
-      _nextBackground = prefs.getString('nextBackground') ?? _nextBackground;
-    } else {
-      _currentBackground = prefs.getString('nextBackground') ?? _currentBackground;
-      _nextBackground = prefs.getString('currentBackground') ?? _nextBackground;
-    }
 
     setState(() {
       _isFirstImageShown = prefs.getBool('isFirstImageShown') ?? true;
@@ -118,68 +112,54 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
       body: GestureDetector(
         onTap: toggleBackground,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              _currentBackground,
-              fit: BoxFit.cover,
-              key: Key(_currentBackground),
-            ),
-            FadeTransition(
-              opacity: _opacityAnimation,
-              child: Image.asset(
-                _nextBackground,
-                fit: BoxFit.cover,
-                key: Key(_nextBackground),
-              ),
-            ),
-            Positioned.fill(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-                child: Container(
-                  color: Colors.black.withOpacity(0.0),
-                ),
-              ),
-            ),
-            buildTextContent(),
-          ],
-        ),
+        child: _buildAnimatedBackground(),
       ),
     );
   }
 
-  Widget buildTextContent() {
+  Widget _buildAnimatedBackground() {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(_currentBackground,
+            fit: BoxFit.cover, key: Key(_currentBackground)),
+        FadeTransition(
+            opacity: _opacityAnimation,
+            child: Image.asset(_nextBackground,
+                fit: BoxFit.cover, key: Key(_nextBackground))),
+        Positioned.fill(child: _buildBlurredOverlay()),
+        _buildTextContent(),
+      ],
+    );
+  }
+
+  Widget _buildBlurredOverlay() {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+      child: Container(color: Colors.black.withOpacity(0.0)),
+    );
+  }
+
+  Widget _buildTextContent() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text(
-            '우리가 함께한 지',
-            style: TextStyle(
-              fontSize: 17,
-              color: Colors.white,
-              fontFamily: 'jalnan',
-            ),
-          ),
+          const Text('우리가 함께한 지',
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+                fontFamily: 'jalnan',
+              )),
           const SizedBox(height: 10),
-          Text(
-            '$dDayText일',
-            style: const TextStyle(
-              fontSize: 50,
-              color: Colors.white,
-              fontFamily: 'jalnan',
-            ),
-          ),
+          Text('$dDayText일',
+              style: const TextStyle(
+                  fontSize: 50, color: Colors.white, fontFamily: 'jalnan')),
           const SizedBox(height: 5),
           Text(
-            '${anniversary.year}.${anniversary.month.toString().padLeft(2, '0')}.${anniversary.day.toString().padLeft(2, '0')}',
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontFamily: 'Ultra',
-            ),
-          ),
+              '${anniversary.year}.${anniversary.month.toString().padLeft(2, '0')}.${anniversary.day.toString().padLeft(2, '0')}',
+              style: const TextStyle(
+                  fontSize: 18, color: Colors.white, fontFamily: 'Ultra')),
         ],
       ),
     );
