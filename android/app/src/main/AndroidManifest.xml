@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.wed">
+    package="com.weday.wed">
    <application
         android:label="wed"
         android:name="${applicationName}"
