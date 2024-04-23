@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,8 +33,8 @@ class _MyHomePageState extends State<MyHomePage>
   static final DateTime anniversary = DateTime(2023, 4, 25);
   int dDayText = -1;
 
-  static const String _currentBackground = 'assets/images/background-01.jpeg';
-  static const String _nextBackground = 'assets/images/background-02.jpeg';
+  String _currentBackground = 'assets/images/background-01.jpeg';
+  String _nextBackground = 'assets/images/background-02.jpeg';
   bool _isFirstImageShown = true;
 
   late AnimationController _controller;
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage>
   void initState() {
     super.initState();
     updateDDay();
+
     _controller = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -51,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage>
       ..addListener(() {
         setState(() {}); // Trigger rebuild whenever animation value changes
       });
+
+    _loadLastSelectedImage();
   }
 
   void updateDDay() {
@@ -67,6 +71,40 @@ class _MyHomePageState extends State<MyHomePage>
       _controller.reverse(); // Fade in the first image
     }
     _isFirstImageShown = !_isFirstImageShown;
+    _saveLastSelectedImage(); // Save last selected image
+  }
+
+  Future<void> _loadLastSelectedImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isFirstImageShown = prefs.getBool('isFirstImageShown') ?? true;
+    
+    if(_isFirstImageShown) {
+      _currentBackground = prefs.getString('currentBackground') ?? _currentBackground;
+      _nextBackground = prefs.getString('nextBackground') ?? _nextBackground;
+    } else {
+      _currentBackground = prefs.getString('nextBackground') ?? _currentBackground;
+      _nextBackground = prefs.getString('currentBackground') ?? _nextBackground;
+    }
+
+    setState(() {
+      _isFirstImageShown = prefs.getBool('isFirstImageShown') ?? true;
+      _currentBackground =
+          prefs.getString('currentBackground') ?? _currentBackground;
+      _nextBackground = prefs.getString('nextBackground') ?? _nextBackground;
+    });
+  }
+
+  Future<void> _saveLastSelectedImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isFirstImageShown', _isFirstImageShown);
+
+    if (_isFirstImageShown) {
+      await prefs.setString('currentBackground', _currentBackground);
+      await prefs.setString('nextBackground', _nextBackground);
+    } else {
+      await prefs.setString('currentBackground', _nextBackground);
+      await prefs.setString('nextBackground', _currentBackground);
+    }
   }
 
   @override
@@ -86,14 +124,14 @@ class _MyHomePageState extends State<MyHomePage>
             Image.asset(
               _currentBackground,
               fit: BoxFit.cover,
-              key: const Key(_currentBackground),
+              key: Key(_currentBackground),
             ),
             FadeTransition(
               opacity: _opacityAnimation,
               child: Image.asset(
                 _nextBackground,
                 fit: BoxFit.cover,
-                key: const Key(_nextBackground),
+                key: Key(_nextBackground),
               ),
             ),
             Positioned.fill(
