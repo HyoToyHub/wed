@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_overlay/flutter_overlay.dart';
 
 void main() {
   runApp(const MyApp());
@@ -152,9 +153,28 @@ class _MyHomePageState extends State<MyHomePage>
                 fontFamily: 'jalnan',
               )),
           const SizedBox(height: 10),
-          Text('$dDayText일',
-              style: const TextStyle(
-                  fontSize: 50, color: Colors.white, fontFamily: 'jalnan')),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => _showPast100DayPopup(context), // 지난 100일 이벤트
+                child: const Text('❤️ ',
+                    style: TextStyle(
+                      fontSize: 30,
+                    )),
+              ),
+              Text('$dDayText일',
+                  style: const TextStyle(
+                      fontSize: 50, color: Colors.white, fontFamily: 'jalnan')),
+              GestureDetector(
+                onTap: () => _showNext100DayPopup(context), // 다음 100일 이벤트
+                child: const Text(' ❤️',
+                    style: TextStyle(
+                      fontSize: 30,
+                    )),
+              ),
+            ],
+          ),
           const SizedBox(height: 5),
           Text(
               '${anniversary.year}.${anniversary.month.toString().padLeft(2, '0')}.${anniversary.day.toString().padLeft(2, '0')}',
@@ -162,6 +182,103 @@ class _MyHomePageState extends State<MyHomePage>
                   fontSize: 18, color: Colors.white, fontFamily: 'Ultra')),
         ],
       ),
+    );
+  }
+
+  Map<String, dynamic> _calculatePast100Day() {
+    int daysPast = dDayText % 100;
+    DateTime past100Day = anniversary.add(Duration(days: dDayText - daysPast));
+    int hundredDayMark = (dDayText - daysPast) ~/ 100 * 100;
+    return {
+      'past100Day': past100Day,
+      'hundredDayMark': hundredDayMark,
+    };
+  }
+
+  Map<String, dynamic> _calculateNext100Day() {
+    int daysUntilNext = 100 - (dDayText % 100);
+    DateTime next100Day =
+        anniversary.add(Duration(days: dDayText + daysUntilNext));
+    int hundredDayMark = (dDayText + daysUntilNext) ~/ 100 * 100;
+    return {
+      'next100Day': next100Day,
+      'hundredDayMark': hundredDayMark,
+      'daysUntilNext': daysUntilNext,
+    };
+  }
+
+  void _showPast100DayPopup(BuildContext context) {
+    var calculation = _calculatePast100Day();
+    DateTime past100Day = calculation['past100Day'];
+    int hundredDayMark = calculation['hundredDayMark'];
+
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.4), // 배경 투명도 조정
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent, // 다이얼로그 배경 투명하게 설정
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.85), // 컨테이너 투명도 조정
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // 컨텐츠 크기에 맞춤
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: Icon(Icons.close, size: 24), // 'X' 버튼 크기 조정
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+                Text(
+                    "${past100Day.year}.${past100Day.month.toString().padLeft(2, '0')}.${past100Day.day.toString().padLeft(2, '0')}\n지난 ${hundredDayMark}일"),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showNext100DayPopup(BuildContext context) {
+    var calculation = _calculateNext100Day();
+    DateTime next100Day = calculation['next100Day'];
+    int hundredDayMark = calculation['hundredDayMark'];
+    int daysUntilNext = calculation['daysUntilNext'];
+
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.4), // 배경 투명도 조정
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent, // 다이얼로그 배경 투명하게 설정
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.85), // 컨테이너 투명도 조정
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // 컨텐츠 크기에 맞춤
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: Icon(Icons.close, size: 24), // 'X' 버튼 크기 조정
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ),
+                Text(
+                    "다음 ${hundredDayMark}일까지\n$daysUntilNext일 남음\n${next100Day.year}.${next100Day.month.toString().padLeft(2, '0')}.${next100Day.day.toString().padLeft(2, '0')}"),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
