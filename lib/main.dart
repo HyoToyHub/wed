@@ -219,28 +219,43 @@ class _MyHomePageState extends State<MyHomePage>
 
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.4), // 배경 투명도 조정
+      barrierColor: Colors.black.withOpacity(0.4),
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: Colors.transparent, // 다이얼로그 배경 투명하게 설정
+          backgroundColor: Colors.transparent,
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.85), // 컨테이너 투명도 조정
+              color: Colors.white.withOpacity(0.85),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // 컨텐츠 크기에 맞춤
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Align(
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: Icon(Icons.close, size: 24), // 'X' 버튼 크기 조정
+                    icon: const Icon(Icons.close, size: 24),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
-                Text(
-                    "${past100Day.year}.${past100Day.month.toString().padLeft(2, '0')}.${past100Day.day.toString().padLeft(2, '0')}\n지난 ${hundredDayMark}일"),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: const TextStyle(fontFamily: 'Diary', color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text:
+                            "${past100Day.year}.${past100Day.month.toString().padLeft(2, '0')}.${past100Day.day.toString().padLeft(2, '0')}",
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      TextSpan(
+                        text: "\n지난 $hundredDayMark일",
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -257,28 +272,47 @@ class _MyHomePageState extends State<MyHomePage>
 
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.4), // 배경 투명도 조정
+      barrierColor: Colors.black.withOpacity(0.4),
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: Colors.transparent, // 다이얼로그 배경 투명하게 설정
+          backgroundColor: Colors.transparent,
           child: Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.85), // 컨테이너 투명도 조정
+              color: Colors.white.withOpacity(0.85),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // 컨텐츠 크기에 맞춤
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Align(
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: Icon(Icons.close, size: 24), // 'X' 버튼 크기 조정
+                    icon: const Icon(Icons.close, size: 24),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
-                Text(
-                    "다음 ${hundredDayMark}일까지\n$daysUntilNext일 남음\n${next100Day.year}.${next100Day.month.toString().padLeft(2, '0')}.${next100Day.day.toString().padLeft(2, '0')}"),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: const TextStyle(fontFamily: 'Diary', color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "다음 $hundredDayMark일까지",
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      TextSpan(
+                        text: "\n$daysUntilNext일 남음",
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                      TextSpan(
+                        text:
+                            "\n${next100Day.year}.${next100Day.month.toString().padLeft(2, '0')}.${next100Day.day.toString().padLeft(2, '0')}",
+                        style: const TextStyle(fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

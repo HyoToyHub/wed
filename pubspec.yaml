@@ -73,6 +73,10 @@ flutter:
       fonts:
         - asset: assets/font/Jalnan2TTF.ttf
 
+    - family: diary
+      fonts:
+        - asset: assets/font/EF_Diary.ttf
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
