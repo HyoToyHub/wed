@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               style: TextStyle(
                 fontSize: 17,
                 color: Colors.white,
-                fontFamily: 'Diary',
+                fontFamily: 'jalnan',
               )),
           const SizedBox(height: 10),
           Row(
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
               ),
               Text(' $dDayText일 ',
                   style: const TextStyle(
-                      fontSize: 50, color: Colors.white, fontFamily: 'Diary')),
+                      fontSize: 50, color: Colors.white, fontFamily: 'jalnan', fontWeight: FontWeight.bold)),
               GestureDetector(
                 onTap: () => _showNext100DayPopup(context), // 다음 100일 이벤트
                 child: Image.asset(
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           Text(
               '${my_utils.DateUtils.anniversary.year}.${my_utils.DateUtils.anniversary.month.toString().padLeft(2, '0')}.${my_utils.DateUtils.anniversary.day.toString().padLeft(2, '0')}',
               style: const TextStyle(
-                  fontSize: 18, color: Colors.white, fontFamily: 'Diary')),
+                  fontSize: 18, color: Colors.white, fontFamily: 'jalnan')),
         ],
       ),
     );
