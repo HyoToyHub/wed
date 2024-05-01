@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_overlay/flutter_overlay.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   // 이미지 경로 설정
   bool _isFirstImageShown = true;
-  String _currentBackground = 'assets/images/background-01.jpeg';
-  String _nextBackground = 'assets/images/background-02.jpeg';
+  String _currentBackground = 'assets/images/background/background-01.jpeg';
+  String _nextBackground = 'assets/images/background/background-02.jpeg';
 
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
@@ -158,20 +157,26 @@ class _MyHomePageState extends State<MyHomePage>
             children: [
               GestureDetector(
                 onTap: () => _showPast100DayPopup(context), // 지난 100일 이벤트
-                child: const Text('❤️ ',
-                    style: TextStyle(
-                      fontSize: 30,
-                    )),
+                child: Image.asset(
+                  'assets/images/icon/heart.png',
+                  width: 20, // 너비 설정
+                  height: 20, // 높이 설정
+                ),
               ),
               Text('$dDayText일',
                   style: const TextStyle(
                       fontSize: 50, color: Colors.white, fontFamily: 'jalnan')),
               GestureDetector(
                 onTap: () => _showNext100DayPopup(context), // 다음 100일 이벤트
-                child: const Text(' ❤️',
-                    style: TextStyle(
-                      fontSize: 30,
-                    )),
+                child: Image.asset(
+                  'assets/images/icon/heart.png',
+                  width: 20, // 너비 설정
+                  height: 20, // 높이 설정
+                ),
+                // child: const Text('❤️ ',
+                //     style: TextStyle(
+                //       fontSize: 30,
+                //     )),
               ),
             ],
           ),
