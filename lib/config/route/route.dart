@@ -19,7 +19,6 @@ extension RouteString on ViewRoute {
 }
 
 
-
 /**
  * route 의 name 을 enum 으로 정의해두고 사용
  * 차후 state 값을 사용하고 진척있을때 ChangeNotifierPovider 사용 예정
@@ -28,7 +27,7 @@ final kRouter = GoRouter(
   initialLocation: '/',
   // initialLocation: '/Home',
   observers: [
-    // FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+    // FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),밋
   ],
   routes: [
     /// Splash
