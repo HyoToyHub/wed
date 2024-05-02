@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb3b3cd7-e8df-42fd-9ee6-e7b23c1a2a74" name="Changes" comment="테스트 커밋">
+    <list default="true" id="fb3b3cd7-e8df-42fd-9ee6-e7b23c1a2a74" name="Changes" comment="계정 변경 확인 커밋">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/config/route/route.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/route/route.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714660153897</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="계정 변경 확인 커밋">
+      <created>1714662314278</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714662314278</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -134,6 +142,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="flutter 업데이트 / Pod file source url 추가 / 안드로이드 스튜디오 init" />
     <MESSAGE value="디렉토리 구조 작업 / 임시 asset, color set" />
-    <option name="LAST_COMMIT_MESSAGE" value="디렉토리 구조 작업 / 임시 asset, color set" />
+    <MESSAGE value="계정 변경 확인 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="계정 변경 확인 커밋" />
   </component>
 </project>

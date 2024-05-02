@@ -27,9 +27,7 @@ extension RouteString on ViewRoute {
 final kRouter = GoRouter(
   initialLocation: '/',
   // initialLocation: '/Home',
-  observers: [
-    // FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),밋
-  ],
+  observers: [],
   routes: [
     /// Splash
     GoRoute(
