@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb3b3cd7-e8df-42fd-9ee6-e7b23c1a2a74" name="Changes" comment="flutter 업데이트 / Pod file source url 추가 / 안드로이드 스튜디오 init">
-      <change afterPath="$PROJECT_DIR$/assets/color/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/background/jiwon.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/config/route/route.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/feature/home/view/index.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/feature/splash/index.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gen/assets.gen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gen/colors.gen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widget/app_text.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fb3b3cd7-e8df-42fd-9ee6-e7b23c1a2a74" name="Changes" comment="디렉토리 구조 작업 / 임시 asset, color set">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/date_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/date/date_utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/home_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/image_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/home/view/image_utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/popup_manager.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/feature/home/view/popup_manager.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wed.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wed.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config/route/route.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/route/route.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +48,7 @@
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
     "last_opened_file_path": "/Users/taes/_App/wed",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
@@ -110,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714634654978</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="디렉토리 구조 작업 / 임시 asset, color set">
+      <created>1714660153897</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714660153897</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -144,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="flutter 업데이트 / Pod file source url 추가 / 안드로이드 스튜디오 init" />
-    <option name="LAST_COMMIT_MESSAGE" value="flutter 업데이트 / Pod file source url 추가 / 안드로이드 스튜디오 init" />
+    <MESSAGE value="디렉토리 구조 작업 / 임시 asset, color set" />
+    <option name="LAST_COMMIT_MESSAGE" value="디렉토리 구조 작업 / 임시 asset, color set" />
   </component>
 </project>
