@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:weday/date_utils.dart' as my_utils;
+import 'package:weday/utils/date/date_utils.dart' as my_utils;
 import 'image_utils.dart';
 import 'popup_manager.dart';
 
+/**
+ * Home View 내부에 utils, popup_manager 로직이 있는데 분할 필요
+ * 로직 분리 예정
+ */
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
