@@ -6,9 +6,7 @@ import 'package:weday/widget/app_text.dart';
 
 import '../../config/route/route.dart';
 
-/**
- * 앱이 실행 될 때 노출되는 Splash 화면
- */
+/// 앱이 실행 될 때 노출되는 Splash 화면
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -24,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       GoRouter.of(context).pushReplacementNamed(ViewRoute.home.name);
     });
   }
